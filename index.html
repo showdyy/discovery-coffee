@@ -55,14 +55,35 @@ header.solid{background:var(--forest);color:var(--forest-ink);box-shadow:0 6px 2
 .brand span{transition:opacity .35s,transform .5s var(--ease)}
 header:not(.solid) .brand img{opacity:0;transform:scale(.4) rotate(-120deg)}
 header:not(.solid) .brand span{opacity:0;transform:translateX(-24px)}
-nav.top{display:flex;gap:2px;margin-left:auto}
-nav.top a{text-decoration:none;font-weight:700;font-size:14px;padding:9px 14px;border-radius:999px;white-space:nowrap;transition:background .2s}
-nav.top a:hover{background:rgba(58,30,27,.08)}
-header.solid nav.top a:hover{background:var(--forest-2)}
+nav.top{display:flex;gap:6px;margin-left:auto}
+nav.top a{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font:800 14px/1 var(--f-display);text-transform:uppercase;letter-spacing:.03em;padding:11px 16px;border-radius:999px;white-space:nowrap;background:rgba(58,30,27,.08);transition:background .2s,color .2s,transform .2s var(--ease)}
+nav.top a svg{width:18px;height:18px;flex:none}
+nav.top a:hover{background:rgba(58,30,27,.16);transform:translateY(-1px)}
+nav.top a.on{background:var(--brown);color:var(--sun)}
+header.solid nav.top a{background:rgba(255,244,214,.1)}
+header.solid nav.top a:hover{background:rgba(255,244,214,.2)}
+header.solid nav.top a.on{background:var(--sun);color:var(--brown)}
+@media (max-width:1080px){nav.top a{padding:10px 12px;font-size:13px}nav.top a svg{display:none}}
+/* phones: app-style bar at the bottom */
+.tabbar{display:none}
+@media (max-width:860px){
+  .tabbar{position:fixed;z-index:45;left:max(10px,env(safe-area-inset-left,0px));right:max(10px,env(safe-area-inset-right,0px));bottom:calc(10px + env(safe-area-inset-bottom,0px));
+    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:6px;background:var(--brown);border-radius:24px;
+    box-shadow:0 16px 36px -12px rgba(0,0,0,.6),0 0 0 2px rgba(253,218,112,.25)}
+  .tabbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:56px;padding:6px 2px;border-radius:18px;color:var(--sun);text-decoration:none;
+    font:800 11px/1 var(--f-display);text-transform:uppercase;letter-spacing:.03em;-webkit-tap-highlight-color:transparent;transition:background .25s,color .25s}
+  .tabbar a svg{width:24px;height:24px}
+  .tabbar a:active{transform:scale(.94)}
+  .tabbar a.on{background:var(--sun);color:var(--brown)}
+  footer{padding-bottom:calc(112px + env(safe-area-inset-bottom,0px))}
+  .hero{padding-bottom:108px}
+  .scroll-cue{display:none}
+}
 .pill{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:14px;padding:10px 16px;border-radius:999px;background:var(--forest);color:var(--forest-ink);white-space:nowrap;transition:transform .2s var(--ease),background .3s}
 header.solid .pill{background:var(--sun);color:var(--brown)}
 .pill:hover{transform:translateY(-1px)}
 @media (max-width:860px){nav.top{display:none}.hdr .pill{margin-left:auto}}
+@media (min-width:861px) and (max-width:960px){.brand span{display:none}}
 
 /* ---------- hero: the logo ---------- */
 .hero{position:relative;background:var(--sun);color:var(--brown);overflow:hidden;min-height:calc(100svh - 68px);display:flex;align-items:center;padding-block:24px 64px;isolation:isolate}
@@ -288,6 +309,10 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="bean" viewBox="0 0 20 28"><ellipse cx="10" cy="14" rx="9" ry="13" fill="currentColor"/><path d="M11.5 2.5C6 8 15 14 9 25.5" fill="none" stroke="#FFF9EC" stroke-width="2" stroke-linecap="round" opacity=".85"/></symbol>
   <symbol id="pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="9.5" r="2.5" fill="currentColor"/></symbol>
+  <symbol id="i-cup" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h12v4.5A5.5 5.5 0 0 1 10.5 19h-1A5.5 5.5 0 0 1 4 13.5z"/><path d="M16 10.5h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5c-.8 1 .8 2 0 3M12 3.5c-.8 1 .8 2 0 3"/><path d="M3 21h15"/></g></symbol>
+  <symbol id="i-cake" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20.5h16"/><path d="M5 20.5V13a1.5 1.5 0 0 1 1.5-1.5h11A1.5 1.5 0 0 1 19 13v7.5"/><path d="M5 15.5c1.2 1 2.3 1 3.5 0s2.3-1 3.5 0 2.3 1 3.5 0 2.3-1 3.5 0"/><path d="M12 11.5V8.5"/><path d="M12 3.5c1.2 1.4 1.2 2.6 0 3.3-1.2-.7-1.2-1.9 0-3.3z"/></g></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 21.5s-7-6.3-7-11.8a7 7 0 0 1 14 0c0 5.5-7 11.8-7 11.8z"/><circle cx="12" cy="9.7" r="2.6"/></g></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="m12 3 2.7 5.6 6.1.8-4.5 4.2 1.2 6.1L12 16.7l-5.5 3 1.2-6.1-4.5-4.2 6.1-.8z"/></symbol>
   <symbol id="star" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2.5 2.9 6.1 6.6.8-4.9 4.5 1.3 6.6L12 17.2l-5.9 3.3 1.3-6.6-4.9-4.5 6.6-.8z"/></symbol>
   <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.5 4 3.5 1.5.6 2.1.7 2.8.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></symbol>
 </svg>
@@ -296,11 +321,21 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
   <div class="wrap hdr">
     <a class="brand" href="#top" aria-label="Discovery Coffee, наверх"><img src="img/logo.svg" alt="" width="46" height="46"><span>Discovery Coffee</span></a>
     <nav class="top" aria-label="Разделы">
-      <a href="#menu">Меню</a><a href="#cakes">Торты</a><a href="#branches">Адреса</a><a href="#reviews">Отзывы</a>
+      <a href="#menu" data-nav="menu"><svg aria-hidden="true"><use href="#i-cup"/></svg>Меню</a>
+      <a href="#cakes" data-nav="cakes"><svg aria-hidden="true"><use href="#i-cake"/></svg>Торты</a>
+      <a href="#branches" data-nav="branches"><svg aria-hidden="true"><use href="#i-pin"/></svg>Адреса</a>
+      <a href="#reviews" data-nav="reviews"><svg aria-hidden="true"><use href="#i-star"/></svg>Отзывы</a>
     </nav>
     <a class="pill" href="https://wa.me/77715597777"><svg width="16" height="16" aria-hidden="true"><use href="#wa"/></svg>WhatsApp</a>
   </div>
 </header>
+
+<nav class="tabbar" aria-label="Быстрый переход">
+  <a href="#menu" data-nav="menu"><svg aria-hidden="true"><use href="#i-cup"/></svg>Меню</a>
+  <a href="#cakes" data-nav="cakes"><svg aria-hidden="true"><use href="#i-cake"/></svg>Торты</a>
+  <a href="#branches" data-nav="branches"><svg aria-hidden="true"><use href="#i-pin"/></svg>Адреса</a>
+  <a href="#reviews" data-nav="reviews"><svg aria-hidden="true"><use href="#i-star"/></svg>Отзывы</a>
+</nav>
 
 <main id="top">
 <section class="hero" aria-labelledby="h1">
@@ -467,6 +502,19 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
   if(spin&&!reduce)addEventListener('scroll',function(){
     if(raf)return;raf=requestAnimationFrame(function(){raf=0;spin.style.setProperty('--rot',(scrollY*.12)+'deg');});
   },{passive:true});
+
+  // ---------- highlight the section you are in (header nav + phone bar) ----------
+  var navLinks=[].slice.call(document.querySelectorAll('[data-nav]'));
+  function setActive(id){navLinks.forEach(function(a){var on=a.getAttribute('data-nav')===id;a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');});}
+  if('IntersectionObserver' in window){
+    var spy={};
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){spy[e.target.id]=e.isIntersecting;});
+      var cur=['reviews','branches','cakes','menu'].filter(function(id){return spy[id];})[0]||'';
+      setActive(cur);
+    },{rootMargin:'-40% 0px -55% 0px'});
+    ['menu','cakes','branches','reviews'].forEach(function(id){var s=document.getElementById(id);if(s)io.observe(s);});
+  }
 
   // ---------- ticker ----------
   var words=['Кофе','Завтраки','Бизнес-ланч','Халяль','Торты на заказ','VIP-зал','Веранда','Навынос'];
