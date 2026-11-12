@@ -136,8 +136,8 @@ section.blk{padding-block:96px}
 .logo-tile p{margin:0;font:800 clamp(15px,1.6vw,19px)/1.3 var(--f-display);text-transform:uppercase}
 .ph5{grid-column:span 7;grid-row:span 1}
 @media (max-width:860px){
-  .photos{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:150px}
-  .ph1,.ph3{grid-column:span 1;grid-row:span 2}.ph2,.ph4,.ph5,.logo-tile{grid-column:span 2;grid-row:span 1}
+  .photos{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:clamp(120px,38vw,170px);grid-auto-flow:row dense;gap:10px}
+  .ph1,.ph3{grid-column:span 1;grid-row:span 2}.ph2,.ph4{grid-column:span 1;grid-row:span 1}.ph5,.logo-tile{grid-column:span 2;grid-row:span 1}
   .logo-tile{padding:16px}
 }
 
