@@ -235,8 +235,38 @@ section.blk{padding-block:96px}
 .src:hover{color:var(--ink);border-color:var(--ink-2)}
 .src i{width:8px;height:8px;border-radius:50%;background:#19aa1e;display:inline-block}
 .rv-more{display:flex;justify-content:center;margin-top:28px}
-.gis{margin-top:40px;display:flex;flex-wrap:wrap;gap:20px 40px;align-items:center;justify-content:space-between;padding:28px;border-radius:var(--r);background:var(--paper-2)}
-.gis p{margin:0;max-width:56ch}
+.src.site i{background:var(--forest)}
+/* leave a review */
+.leave{margin-top:48px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:24px 48px;padding:40px;border-radius:var(--r);background:var(--sun);color:var(--brown);position:relative;overflow:hidden;scroll-margin-top:90px}
+.leave .intro{position:relative;z-index:1}
+.leave h3{font-size:clamp(26px,3.4vw,40px);text-transform:uppercase}
+.leave .intro p{margin:14px 0 0;font-size:16px;font-weight:500;max-width:40ch}
+.leave .intro small{display:block;margin-top:18px;font-size:14px;opacity:.8}
+.leave .intro small a{font-weight:700}
+.leave .deco{position:absolute;left:-70px;bottom:-90px;width:260px;opacity:.95;transform:rotate(-14deg);pointer-events:none}
+.rform{display:grid;gap:14px;background:var(--paper);border-radius:16px;padding:24px;position:relative;z-index:1;box-shadow:0 24px 50px -30px rgba(80,50,0,.5)}
+.rform .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+.rform label,.rform legend{display:block;font:700 14px/1.3 var(--f-body);margin-bottom:6px;color:var(--ink);padding:0}
+.rform input[type=text],.rform select,.rform textarea{width:100%;font:500 16px/1.4 var(--f-body);color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:12px;padding:12px 14px;transition:border-color .2s}
+.rform textarea{min-height:120px;resize:vertical}
+.rform input:focus,.rform select:focus,.rform textarea:focus{outline:none;border-color:var(--forest)}
+.rform fieldset{border:0;margin:0;padding:0;min-width:0}
+.rate-in{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:2px}
+.rate-in input{position:absolute;opacity:0;width:1px;height:1px}
+.rate-in label{font-size:36px;line-height:1;color:#e2d3b0;cursor:pointer;margin:0;padding:0 2px;transition:color .15s,transform .15s}
+.rate-in label:hover,.rate-in label:hover ~ label,.rate-in input:checked ~ label{color:#F2A900}
+.rate-in label:hover{transform:scale(1.12)}
+.rate-in input:focus-visible + label{outline:3px solid var(--forest);outline-offset:2px;border-radius:6px}
+.rform .cnt{font-size:12px;color:var(--ink-2);text-align:right;margin-top:4px}
+.rform .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.rform .btn{justify-self:start}
+.rform .btn[disabled]{opacity:.6;cursor:wait;transform:none}
+.form-msg{font-size:14px;font-weight:600;margin:0;min-height:1.2em}
+.form-msg.err{color:var(--off)}
+.form-msg.ok{color:var(--forest)}
+.form-msg a{color:inherit}
+@media (max-width:860px){.leave{grid-template-columns:minmax(0,1fr);padding:24px 16px}.leave .deco{display:none}.rform{padding:18px}}
+@media (max-width:520px){.rform .row{grid-template-columns:minmax(0,1fr)}}
 .updated{font-size:13px;color:var(--ink-2);margin-top:14px;text-align:right}
 
 /* footer */
@@ -358,8 +388,8 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
 <section class="blk" id="reviews" aria-labelledby="rv-h">
   <div class="wrap">
     <div class="head">
-      <div><span class="eyebrow"><svg class="bean" aria-hidden="true"><use href="#bean"/></svg>Отзывы</span><h2 id="rv-h">Что пишут гости в 2ГИС</h2></div>
-      <a class="btn ghost" id="rv-all" href="https://2gis.kz/pavlodar/branches/70000001030973689">Все отзывы в 2ГИС →</a>
+      <div><span class="eyebrow"><svg class="bean" aria-hidden="true"><use href="#bean"/></svg>Отзывы</span><h2 id="rv-h">Что пишут гости</h2></div>
+      <a class="btn forest" href="#leave">★ Оставить отзыв</a>
     </div>
     <div class="rv-top">
       <div class="score" id="score">
@@ -374,9 +404,33 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
     <div class="reviews" id="rvs"></div>
     <div class="rv-more" id="rv-more-wrap" hidden><button class="btn ghost" type="button" id="rv-more">Показать ещё</button></div>
     <div class="updated" id="rv-updated"></div>
-    <div class="gis">
-      <p>Оценки, фото гостей и маршрут до любой кофейни есть в нашей карточке 2ГИС. Будем рады вашему отзыву.</p>
-      <a class="btn forest" href="https://2gis.kz/pavlodar/firm/70000001030973690/tab/reviews"><svg width="16" height="16" aria-hidden="true"><use href="#pin"/></svg>Оставить отзыв</a>
+    <div class="leave" id="leave">
+      <div class="intro">
+        <h3>Были у нас? Расскажите!</h3>
+        <p>Поставьте оценку и напишите пару слов — что понравилось, что улучшить. Мы читаем каждый отзыв.</p>
+        <small id="leave-note">Отзыв появится на сайте после проверки. Ещё больше отзывов — в <a href="https://2gis.kz/pavlodar/branches/70000001030973689">нашей карточке 2ГИС</a>.</small>
+        <img class="deco" src="img/logo.svg" alt="">
+      </div>
+      <form class="rform" id="rform" novalidate>
+        <fieldset>
+          <legend>Ваша оценка</legend>
+          <div class="rate-in" role="radiogroup" aria-label="Оценка">
+            <input type="radio" name="rating" id="r5" value="5"><label for="r5" title="Отлично">★</label>
+            <input type="radio" name="rating" id="r4" value="4"><label for="r4" title="Хорошо">★</label>
+            <input type="radio" name="rating" id="r3" value="3"><label for="r3" title="Нормально">★</label>
+            <input type="radio" name="rating" id="r2" value="2"><label for="r2" title="Плохо">★</label>
+            <input type="radio" name="rating" id="r1" value="1"><label for="r1" title="Ужасно">★</label>
+          </div>
+        </fieldset>
+        <div class="row">
+          <div><label for="f-name">Имя</label><input type="text" id="f-name" name="name" maxlength="60" autocomplete="given-name" required></div>
+          <div><label for="f-branch">Кофейня</label><select id="f-branch" name="branch"><option value="">Не важно</option></select></div>
+        </div>
+        <div><label for="f-text">Отзыв</label><textarea id="f-text" name="text" maxlength="1000" required></textarea><div class="cnt" id="f-cnt">0 / 1000</div></div>
+        <div class="hp" aria-hidden="true"><label for="f-web">Сайт</label><input type="text" id="f-web" name="website" tabindex="-1" autocomplete="off"></div>
+        <button class="btn forest" type="submit" id="f-send">Отправить отзыв</button>
+        <p class="form-msg" id="f-msg" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </div>
 </section>
@@ -461,7 +515,11 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
   }
   drawBranches();
 
-  // ---------- reviews: reviews.json is refreshed from 2GIS by a GitHub Action; built-in list is the fallback ----------
+  // ---------- reviews ----------
+  // REVIEWS_API: URL of the Google Apps Script web app (see reviews-setup/README.md).
+  // Empty: the form sends the review to WhatsApp instead, and only the built-in reviews are shown.
+  var REVIEWS_API='';
+  var WA='77715597777';
   var MIN_RATING=4,FIRST=8,STEP=6;
   var fallback={reviews:[
     {name:'Ирина Баймышева',date:'2026-11-11',text:'Все очень вкусно, вежливый персонал 🥰❤️ Спасибо большое за то, что вы есть) Кофе у вас самое вкусное в городе 🥰 приходите все сюда',branchId:'70000001030973690'},
@@ -480,10 +538,14 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
       '<blockquote>'+esc(r.text)+'</blockquote>'+(long?'<button class="more" type="button">Читать полностью</button>':'')+
       (r.answer?'<div class="ans"><b>Ответ кофейни</b>'+esc(r.answer)+'</div>':'')+
       '<figcaption><span class="who"><b>'+esc(r.name)+'</b><small>'+esc(date(r.date))+(r.branch?' · '+esc(r.branch):'')+'</small></span>'+
-      '<a class="src" href="'+G+encodeURIComponent(r.branchId||brs[0].id)+'/tab/reviews"><i></i>2ГИС</a></figcaption></figure>';
+      (r.source==='site'?'<span class="src site"><i></i>Сайт</span>':'<a class="src" href="'+G+encodeURIComponent(r.branchId||brs[0].id)+'/tab/reviews"><i></i>2ГИС</a>')+'</figcaption></figure>';
   }
+  var gisData=fallback,siteReviews=[];
+  function redraw(){drawReviews(gisData);}
   function drawReviews(data){
-    var list=(data.reviews||[]).filter(function(r){return r.text&&(!r.rating||r.rating>=MIN_RATING);});
+    var gis=(data.reviews||[]).filter(function(r){return r.text&&(!r.rating||r.rating>=MIN_RATING);});
+    // site reviews are approved by hand in the sheet, so they are shown as-is
+    var list=siteReviews.concat(gis).sort(function(a,b){return String(b.date).localeCompare(String(a.date));});
     var lead=document.getElementById('rvs-lead'),rest=document.getElementById('rvs'),shown=FIRST;
     var wrap=document.getElementById('rv-more-wrap');
     function paint(){
@@ -507,9 +569,52 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
   document.getElementById('reviews').addEventListener('click',function(e){
     var b=e.target.closest('.more');if(!b)return;var f=b.closest('.rv');f.classList.remove('clamp');b.remove();
   });
-  drawReviews(fallback);
+  redraw();
   if(window.fetch)fetch('reviews.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json();})
-    .then(function(d){if(d&&d.reviews&&d.reviews.length)drawReviews(d);}).catch(function(){});
+    .then(function(d){if(d&&d.reviews&&d.reviews.length){gisData=d;redraw();}}).catch(function(){});
+  if(REVIEWS_API&&window.fetch)fetch(REVIEWS_API).then(function(r){return r.json();}).then(function(d){
+    siteReviews=(d&&d.reviews||[]).filter(function(r){return r&&r.text;}).map(function(r){
+      var b=brs.filter(function(x){return x.a===r.branch;})[0];
+      return {source:'site',name:String(r.name||'Гость'),date:r.date,rating:Number(r.rating)||null,text:String(r.text),branch:r.branch||'',branchId:b&&b.id,answer:r.answer||null};
+    });
+    redraw();
+  }).catch(function(){});
+
+  // ---------- leave a review ----------
+  var form=document.getElementById('rform'),msg=document.getElementById('f-msg'),send=document.getElementById('f-send');
+  var fText=document.getElementById('f-text'),fCnt=document.getElementById('f-cnt');
+  document.getElementById('f-branch').insertAdjacentHTML('beforeend',brs.map(function(b){return '<option>'+b.a+'</option>';}).join(''));
+  fText.addEventListener('input',function(){fCnt.textContent=fText.value.length+' / 1000';});
+  if(!REVIEWS_API){
+    document.getElementById('leave-note').innerHTML='Отзыв уйдёт нам в WhatsApp, мы опубликуем его здесь. Ещё больше отзывов — в <a href="https://2gis.kz/pavlodar/branches/70000001030973689">нашей карточке 2ГИС</a>.';
+    send.textContent='Отправить через WhatsApp';
+  }
+  function say(t,cls){msg.className='form-msg'+(cls?' '+cls:'');msg.innerHTML=t;}
+  function lastSent(){try{return +localStorage.getItem('dc-review-sent')||0;}catch(e){return 0;}}
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=form.elements,r=form.querySelector('input[name=rating]:checked');
+    var d={rating:r?+r.value:0,name:f.name.value.trim(),branch:f.branch.value,text:f.text.value.trim(),website:f.website.value};
+    if(!d.rating)return say('Поставьте оценку — от 1 до 5 звёзд.','err');
+    if(!d.name){f.name.focus();return say('Как вас зовут?','err');}
+    if(d.text.length<10){f.text.focus();return say('Напишите хотя бы пару слов (от 10 символов).','err');}
+    if(d.website)return say('Спасибо! Отзыв отправлен.','ok');
+    var wa='https://wa.me/'+WA+'?text='+encodeURIComponent('Отзыв о Discovery Coffee\n'+'★'.repeat(d.rating)+' ('+d.rating+' из 5)'+(d.branch?'\nКофейня: '+d.branch:'')+'\nИмя: '+d.name+'\n\n'+d.text);
+    if(!REVIEWS_API){
+      window.open(wa,'_blank','noopener');
+      return say('Открываем WhatsApp — нажмите «Отправить», и мы опубликуем ваш отзыв. Спасибо!','ok');
+    }
+    if(Date.now()-lastSent()<10*60*1000)return say('Вы уже отправили отзыв. Новый можно оставить через несколько минут.','err');
+    send.disabled=true;send.textContent='Отправляем…';say('');
+    fetch(REVIEWS_API,{method:'POST',body:JSON.stringify(d)}).then(function(res){return res.json();}).then(function(j){
+      if(!j||!j.ok)throw 0;
+      try{localStorage.setItem('dc-review-sent',String(Date.now()));}catch(e){}
+      form.reset();fCnt.textContent='0 / 1000';
+      say('Спасибо! Отзыв появится на сайте после проверки.','ok');
+    }).catch(function(){
+      say('Не получилось отправить. Попробуйте ещё раз или <a href="'+esc(wa)+'" target="_blank" rel="noopener">отправьте в WhatsApp</a>.','err');
+    }).then(function(){send.disabled=false;send.textContent='Отправить отзыв';});
+  });
 
   // ---------- menu ----------
   var menu=[
