@@ -173,23 +173,39 @@ section.blk{padding-block:96px}
 
 /* menu */
 #menu{background:var(--paper-2)}
-.board{columns:3 320px;column-gap:16px}
-.mcat{break-inside:avoid;margin:0 0 16px;padding:24px;border-radius:var(--r);background:var(--card);box-shadow:0 20px 40px -34px rgba(58,30,27,.6)}
-.mcat-h{display:flex;align-items:center;gap:16px}
-.mcat-h img{width:76px;height:76px;border-radius:50%;object-fit:cover;flex:none;border:4px solid var(--sun)}
-.mcat-h img.lg{border:0;background:none}
-.mcat h3{font-size:22px;font-weight:900;text-transform:uppercase;line-height:1.1}
-.mcat .note{margin:4px 0 0;font-size:14px;color:var(--ink-2);line-height:1.45}
-.mcat ul{list-style:none;margin:18px 0 0;padding:0}
-.mcat li{display:flex;align-items:baseline;gap:10px;padding:10px 0;border-top:1px dashed var(--line)}
-.mcat li:first-child{border-top:0;padding-top:0}
-.mcat li .bean{width:10px;height:14px;color:var(--forest);flex:none;transform:translateY(1px)}
-.mcat li b{font-weight:700;font-size:16px}
-.mcat li small{display:block;font-size:13px;color:var(--ink-2);margin-top:1px}
+.board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(220px,22vw,300px);gap:14px}
+.tile{position:relative;overflow:hidden;border-radius:var(--r);background:var(--forest);color:#fff;isolation:isolate}
+.tile.big{grid-column:span 2;grid-row:span 2}
+.tile.wide{grid-column:span 2}
+.tile > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1s var(--ease)}
+.tile:hover > img{transform:scale(1.05)}
+.tile::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,10,6,0) 25%,rgba(20,10,6,.55) 58%,rgba(20,10,6,.9) 100%)}
+.tile.logo{background:var(--forest)}
+.tile.logo::before{background:none}
+.tile.logo > img{inset:auto;top:18px;right:18px;width:42%;height:auto;object-fit:contain;opacity:.95}
+.tile .in{position:absolute;left:0;right:0;bottom:0;padding:20px 22px 22px}
+.tile h3{font-size:clamp(22px,2.2vw,30px);font-weight:900;text-transform:uppercase;line-height:1;color:var(--sun)}
+.tile.big h3{font-size:clamp(30px,3.6vw,52px)}
+.tile p{margin:8px 0 0;font-size:14px;line-height:1.4;color:rgba(255,255,255,.88);max-width:46ch}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chips span{font-size:13px;font-weight:700;line-height:1;padding:7px 10px;border-radius:999px;background:rgba(255,249,236,.16);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,249,236,.22);white-space:nowrap}
+.tile.big .chips span{font-size:14px;padding:8px 12px}
+@media (max-width:900px){
+  .board{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:240px}
+  .tile.big{grid-column:span 2;grid-row:span 2}
+  .tile.wide{grid-column:span 2}
+}
+@media (max-width:560px){
+  .board{grid-template-columns:minmax(0,1fr);grid-auto-rows:auto;gap:12px}
+  .tile,.tile.big,.tile.wide{grid-column:auto;grid-row:auto;min-height:250px;display:flex;align-items:flex-end}
+  .tile.big{min-height:360px}
+  .tile .in{position:relative;padding:18px}
+  .tile.logo > img{width:34%}
+}
 .menu-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;margin-top:8px;padding:22px 24px;border-radius:var(--r);background:var(--brown);color:var(--sun)}
 .menu-foot p{margin:0;font-weight:600}
 .menu-foot .btn{background:var(--sun);color:var(--brown)}
-@media (max-width:640px){.mcat{padding:18px}.mcat-h img{width:64px;height:64px}}
+
 
 /* cakes */
 .cakes{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;align-items:center}
@@ -547,24 +563,33 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
     {n:'Павлодар',count:7},
     // id — карточка кофейни в 2ГИС; без id ссылка ведёт на поиск по адресу
     {n:'Астана',slug:'astana',url:'https://2gis.kz/astana/branches/70000001019143867',list:[
-      {a:'Динмухамед Конаев, 12',id:'70000001020138882'},
-      {a:'Кенесары, 63',id:'70000001044064889'},
-      {a:'Бейбитшилик, 31',id:'70000001026941463'},
-      {a:'Туркестан, 8',z:'ЖК «Олимп Палас»',id:'70000001032527350'},
-      {a:'Жанибек хандар, 14/2',z:'Керей',id:'70000001059237507'},
-      {a:'Каныша Сатпаева, 5'},
-      {a:'Санжара Асфендиярова, 4'},
-      {a:'Жумекена Нажимеденова, 16'},
-      {a:'Мангилик Ел, 51/2'},
-      {a:'Мангилик Ел, 54'},
-      {a:'Ирченко, 31'},
-      {a:'Азербайжана Мамбетова, 1в'}
+      {o:480,c:1440,a:'Динмухамед Конаев, 12',id:'70000001020138882'},
+      {o:480,c:1440,a:'Кенесары, 63',id:'70000001044064889'},
+      {o:480,c:1440,a:'Бейбитшилик, 31',id:'70000001026941463'},
+      {o:480,c:1440,a:'Туркестан, 8',z:'ЖК «Олимп Палас»',id:'70000001032527350'},
+      {o:480,c:1440,a:'Жанибек хандар, 14/2',z:'Керей',id:'70000001059237507'},
+      {o:480,c:1440,a:'Каныша Сатпаева, 5'},
+      {o:480,c:1440,a:'Санжара Асфендиярова, 4'},
+      {o:480,c:1440,a:'Жумекена Нажимеденова, 16'},
+      {o:480,c:1440,a:'Мангилик Ел, 51/2'},
+      {o:480,c:1440,a:'Мангилик Ел, 54'},
+      {o:480,c:1440,a:'Ирченко, 31'},
+      {o:480,c:1440,a:'Азербайжана Мамбетова, 1в'}
     ]},
     {n:'Тараз',slug:'taraz',url:'https://2gis.kz/taraz/branches',list:[
-      {a:'Абая, 128',id:'70000001051433818'},
-      {a:'Казыбек би, 144а',id:'70000001055154589'}
+      {o:480,c:1440,a:'Абая, 128',id:'70000001051433818'},
+      {o:480,c:1440,a:'Казыбек би, 144а',id:'70000001055154589'}
     ]}
   ],city=0,lastStats=null;
+  function cityBranches(c){return c.list||(c.n==='Павлодар'?brs:[]);}
+  var all=[].concat.apply([],cities.map(cityBranches));
+  var allOpen=all.filter(isOpen).length;
+  var firstOpen=Math.min.apply(null,all.map(function(b){return b.o;}));
+  document.getElementById('status').innerHTML=allOpen
+    ?'<span class="dot live"></span>Сейчас открыто '+allOpen+' из '+all.length+' '+plural(all.length,'кофейни','кофеен','кофеен')
+    :'<span class="dot off"></span>Сейчас все закрыты · откроемся в '+hm(firstOpen);
+  function openLead(list){var n=list.filter(isOpen).length,f=Math.min.apply(null,list.map(function(b){return b.o;}));
+    return n?'Сейчас открыто '+n+' из '+list.length+'.':'Сейчас все закрыты, первая откроется в '+hm(f)+'.';}
   var ctabs=document.getElementById('ctabs');
   var gisCities=null;
   function gisCity(n){return gisCities&&gisCities.filter(function(x){return x.name===n;})[0];}
@@ -589,12 +614,14 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
       return;
     }
     if(c.list){
-      lead.textContent=c.list.length+' '+plural(c.list.length,'кофейня','кофейни','кофеен')+' · часы работы и телефоны — в карточках 2ГИС';
+      lead.textContent=openLead(c.list);
       document.getElementById('brs').innerHTML=c.list.map(function(b){
         var base='https://2gis.kz/'+c.slug+'/';
         var link=b.id?base+'firm/'+b.id:base+'search/'+encodeURIComponent('Discovery Coffee, '+b.a);
-        return '<article class="br"><div class="top"><div><h3>'+b.a+'</h3><div class="zip">'+c.n+(b.z?' · '+b.z:'')+'</div></div></div>'+
-          '<div class="meta"><span>Работаем каждый день</span></div>'+
+        var on=isOpen(b);
+        return '<article class="br"><div class="top"><div><h3>'+b.a+'</h3><div class="zip">'+c.n+(b.z?' · '+b.z:'')+'</div></div>'+
+          '<span class="badge"><span class="dot'+(on?'':' off')+'"></span>'+(on?'Открыто':'Закрыто')+'</span></div>'+
+          '<div class="meta"><span class="num">ежедневно '+hours(b)+'</span><span>телефон в 2ГИС</span></div>'+
           '<div class="acts"><a href="'+link+'"><svg width="14" height="14" aria-hidden="true"><use href="#pin"/></svg>Маршрут в 2ГИС</a>'+
           (b.id?'<a href="'+link+'/tab/reviews">Отзывы</a>':'')+'</div></article>';
       }).join('');
@@ -606,7 +633,7 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
         '<a class="btn forest" href="'+c.url+'"><svg width="16" height="16" aria-hidden="true"><use href="#pin"/></svg>Адреса в 2ГИС</a></article>';
       return;
     }
-    lead.textContent=openN?'Сейчас открыто '+openN+' из 7.':'Сейчас все закрыты, первая откроется в '+hm(nextOpen)+'.';
+    lead.textContent=openLead(brs);
     document.getElementById('brs').innerHTML=brs.map(function(b){
       var on=isOpen(b),s=stats[b.id];
       var rate=s&&s.rating?'<span class="rate"><svg width="15" height="15" aria-hidden="true"><use href="#star"/></svg>'+s.rating.toFixed(1).replace('.',',')+'<span style="font-weight:500;color:var(--ink-2)"> · '+s.count+' '+plural(s.count,'оценка','оценки','оценок')+'</span></span>':'';
@@ -730,18 +757,20 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
 
   // ---------- menu ----------
   var menu=[
-    {n:'Кофе',img:'cappuccino',note:'Классика на эспрессо, холодный кофе и бамбл. Любой напиток можно взять с собой.',items:[['Эспрессо',''],['Капучино',''],['Латте',''],['Бамбл','эспрессо с апельсиновым соком'],['Айс-кофе','']]},
+    {n:'Кофе',img:'cappuccino',k:'big',note:'Классика на эспрессо, холодный кофе и бамбл. Любой напиток можно взять с собой.',items:[['Эспрессо',''],['Капучино',''],['Латте',''],['Бамбл','эспрессо с апельсиновым соком'],['Айс-кофе','']]},
     {n:'Напитки',img:'drink',note:'Для тех, кто не пьёт кофе, и для детей.',items:[['Чай','чёрный, зелёный, ягодный'],['Какао',''],['Милкшейк',''],['Лимонад','']]},
     {n:'Завтраки',img:'breakfast',note:'Подаём с утра.',items:[['Блины',''],['Сырники',''],['Сэндвич',''],['Кесадилья','']]},
-    {n:'Бизнес-ланч',img:'salmon',note:'Комплексный обед днём. Время и состав дня уточняйте в кофейне.',items:[['Суп',''],['Горячее',''],['Напиток','']]},
-    {n:'Кухня',img:'bowl',note:'Халяльная и европейская кухня на обед и ужин.',items:[['Боулы',''],['Рамен',''],['Паста',''],['Рис вок',''],['Пицца',''],['Бургер',''],['Гриль','лосось, говядина'],['Картофель фри',''],['Супы',''],['Салаты','']]},
+    {n:'Бизнес-ланч',img:'steak',note:'Комплексный обед днём. Время и состав дня уточняйте в кофейне.',items:[['Суп',''],['Горячее',''],['Напиток','']]},
+    {n:'Кухня',img:'bowl',k:'wide',note:'Халяльная и европейская кухня на обед и ужин.',items:[['Боулы',''],['Рамен',''],['Паста',''],['Рис вок',''],['Пицца',''],['Бургер',''],['Гриль','лосось, говядина'],['Картофель фри',''],['Супы',''],['Салаты','']]},
     {n:'Суши',img:'',note:'Роллы и сеты в зале и с собой.',items:[['Роллы',''],['Сеты','']]},
-    {n:'Десерты',img:'cheesecake',note:'Рулеты-безе, чизкейки и десерты дня в витрине. Торты на заказ.',items:[['Чизкейк',''],['Рулет-безе',''],['Десерт дня',''],['Торт на заказ','см. раздел «Торты»']]}
+    {n:'Десерты',img:'cheesecake',k:'wide',note:'Рулеты-безе, чизкейки и десерты дня в витрине. Торты на заказ.',items:[['Чизкейк',''],['Рулет-безе',''],['Десерт дня',''],['Торт на заказ','см. раздел «Торты»']]}
   ];
-  document.getElementById('board').innerHTML=menu.map(function(c){
-    return '<article class="mcat"><div class="mcat-h">'+(c.img?'<img src="img/'+c.img+'.webp" alt="" loading="lazy">':'<img class="lg" src="img/logo.svg" alt="" loading="lazy">')+
-      '<div><h3>'+c.n+'</h3><p class="note">'+c.note+'</p></div></div><ul>'+
-      c.items.map(function(it){return '<li>'+bean+'<span><b>'+it[0]+'</b>'+(it[1]?'<small>'+it[1]+'</small>':'')+'</span></li>';}).join('')+'</ul></article>';
+  var order=['Кофе','Напитки','Завтраки','Бизнес-ланч','Суши','Кухня','Десерты'];
+  document.getElementById('board').innerHTML=order.map(function(n){return menu.filter(function(c){return c.n===n;})[0];}).map(function(c){
+    return '<article class="tile'+(c.k?' '+c.k:'')+(c.img?'':' logo')+'">'+
+      (c.img?'<img src="img/'+c.img+'.webp" alt="'+c.n+'" loading="lazy">':'<img src="img/logo.svg" alt="" loading="lazy">')+
+      '<div class="in"><h3>'+c.n+'</h3><p>'+c.note+'</p><div class="chips">'+
+      c.items.map(function(it){return '<span>'+it[0]+(it[1]&&c.k==='big'?' · '+it[1]:'')+'</span>';}).join('')+'</div></div></article>';
   }).join('');
 
   document.addEventListener('click',function(e){
