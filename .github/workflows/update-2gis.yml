@@ -28,7 +28,7 @@ jobs:
           node-version: 20
       - name: Получить рейтинги и адреса из API 2ГИС
         env:
-          GIS_KEY: ${{ secrets.GIS_KEY }}
+          GIS_KEY: ${{ secrets.GIS_KEY || vars.GIS_KEY }}
         run: node scripts/update-2gis.mjs reviews.json
       - name: Сохранить, если изменилось
         run: |
