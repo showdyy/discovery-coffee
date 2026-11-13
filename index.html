@@ -55,35 +55,33 @@ header.solid{background:var(--forest);color:var(--forest-ink);box-shadow:0 6px 2
 .brand span{transition:opacity .35s,transform .5s var(--ease)}
 header:not(.solid) .brand img{opacity:0;transform:scale(.4) rotate(-120deg)}
 header:not(.solid) .brand span{opacity:0;transform:translateX(-24px)}
-nav.top{display:flex;gap:6px;margin-left:auto}
-nav.top a{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font:800 14px/1 var(--f-display);text-transform:uppercase;letter-spacing:.03em;padding:11px 16px;border-radius:999px;white-space:nowrap;background:rgba(58,30,27,.08);transition:background .2s,color .2s,transform .2s var(--ease)}
-nav.top a svg{width:18px;height:18px;flex:none}
-nav.top a:hover{background:rgba(58,30,27,.16);transform:translateY(-1px)}
-nav.top a.on{background:var(--brown);color:var(--sun)}
-header.solid nav.top a{background:rgba(255,244,214,.1)}
-header.solid nav.top a:hover{background:rgba(255,244,214,.2)}
-header.solid nav.top a.on{background:var(--sun);color:var(--brown)}
-@media (max-width:1080px){nav.top a{padding:10px 12px;font-size:13px}nav.top a svg{display:none}}
-/* phones: app-style bar at the bottom */
-.tabbar{display:none}
-@media (max-width:860px){
-  .tabbar{position:fixed;z-index:45;left:max(10px,env(safe-area-inset-left,0px));right:max(10px,env(safe-area-inset-right,0px));bottom:calc(10px + env(safe-area-inset-bottom,0px));
-    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:6px;background:var(--brown);border-radius:24px;
-    box-shadow:0 16px 36px -12px rgba(0,0,0,.6),0 0 0 2px rgba(253,218,112,.25)}
-  .tabbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:56px;padding:6px 2px;border-radius:18px;color:var(--sun);text-decoration:none;
-    font:800 11px/1 var(--f-display);text-transform:uppercase;letter-spacing:.03em;-webkit-tap-highlight-color:transparent;transition:background .25s,color .25s}
-  .tabbar a svg{width:24px;height:24px}
-  .tabbar a:active{transform:scale(.94)}
-  .tabbar a.on{background:var(--sun);color:var(--brown)}
-  footer{padding-bottom:calc(112px + env(safe-area-inset-bottom,0px))}
-  .hero{padding-bottom:108px}
-  .scroll-cue{display:none}
-}
+/* desktop: plain links, active one underlined */
+nav.top{display:flex;gap:4px;margin-left:auto;align-self:stretch}
+nav.top a{position:relative;display:flex;align-items:center;padding:0 16px;text-decoration:none;font:700 15px/1 var(--f-body);white-space:nowrap;opacity:.8;transition:opacity .2s}
+nav.top a::after{content:"";position:absolute;left:16px;right:16px;bottom:14px;height:3px;border-radius:2px;background:currentColor;transform:scaleX(0);transition:transform .3s var(--ease)}
+nav.top a:hover{opacity:1}
+nav.top a:hover::after{transform:scaleX(.5)}
+nav.top a.on{opacity:1}
+nav.top a.on::after{transform:scaleX(1)}
+header.solid nav.top a.on{color:var(--sun)}
 .pill{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:14px;padding:10px 16px;border-radius:999px;background:var(--forest);color:var(--forest-ink);white-space:nowrap;transition:transform .2s var(--ease),background .3s}
 header.solid .pill{background:var(--sun);color:var(--brown)}
 .pill:hover{transform:translateY(-1px)}
-@media (max-width:860px){nav.top{display:none}.hdr .pill{margin-left:auto}}
-@media (min-width:861px) and (max-width:960px){.brand span{display:none}}
+/* phones: a row of four section buttons under the logo bar */
+.qnav{display:none}
+@media (max-width:860px){
+  html{scroll-padding-top:118px}
+  .hdr{height:58px}
+  .brand img{width:40px;height:40px}
+  nav.top{display:none}
+  .hdr .pill{margin-left:auto}
+  .qnav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding:0 max(12px,env(safe-area-inset-left,0px)) 10px}
+  .qnav a{display:flex;align-items:center;justify-content:center;height:40px;border-radius:12px;text-decoration:none;font:700 14px/1 var(--f-body);background:rgba(58,30,27,.09);transition:background .2s,color .2s}
+  .qnav a.on{background:var(--brown);color:var(--sun)}
+  header.solid .qnav a{background:rgba(255,244,214,.12)}
+  header.solid .qnav a.on{background:var(--sun);color:var(--brown)}
+}
+@media (min-width:861px) and (max-width:960px){.brand span{display:none}nav.top a{padding:0 11px}nav.top a::after{left:11px;right:11px}}
 
 /* ---------- hero: the logo ---------- */
 .hero{position:relative;background:var(--sun);color:var(--brown);overflow:hidden;min-height:calc(100svh - 68px);display:flex;align-items:center;padding-block:24px 64px;isolation:isolate}
@@ -175,33 +173,23 @@ section.blk{padding-block:96px}
 
 /* menu */
 #menu{background:var(--paper-2)}
-.tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px 20px;padding:4px 16px;scroll-snap-type:x proximity}
-.tabs::-webkit-scrollbar{display:none}
-.tabs button{flex:none;scroll-snap-align:start;font:800 14px/1 var(--f-display);text-transform:uppercase;letter-spacing:.03em;padding:14px 20px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;white-space:nowrap;transition:background .2s,border-color .2s,color .2s}
-.tabs button:hover{border-color:var(--brown)}
-.tabs button[aria-selected="true"]{background:var(--brown);border-color:var(--brown);color:var(--sun)}
-.mpanel{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 60px -40px rgba(58,30,27,.55)}
-.mph{position:relative;min-height:440px;background:var(--forest)}
-.mph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:fade .5s var(--ease) both}
-.mph.logo{display:grid;place-items:center}
-.mph.logo img{position:static;width:58%;height:auto;object-fit:contain}
-.mbody{padding:36px 40px;display:flex;flex-direction:column;gap:14px;min-width:0}
-.mbody h3{font-size:clamp(28px,3.4vw,42px);text-transform:uppercase}
-.mbody p{margin:0;color:var(--ink-2);font-size:16px;max-width:52ch}
-.items{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.items li{display:flex;gap:10px;align-items:flex-start;padding:14px 16px;border-radius:14px;background:var(--paper);min-width:0}
-.items .bean{width:12px;height:17px;margin-top:3px;color:var(--forest)}
-.items .n{display:block;font-weight:700;font-size:16px;line-height:1.3}
-.items .d{display:block;font-size:13px;color:var(--ink-2);margin-top:2px;line-height:1.35}
-.mcta{margin-top:auto;padding-top:10px}
-@keyframes fade{from{opacity:.2}to{opacity:1}}
-@media (max-width:860px){
-  .mpanel{grid-template-columns:minmax(0,1fr)}
-  .mph{min-height:0;aspect-ratio:16/10}
-  .mph.logo img{width:34%}
-  .mbody{padding:22px 18px 24px}
-}
-@media (max-width:360px){.items{grid-template-columns:minmax(0,1fr)}}
+.board{columns:3 320px;column-gap:16px}
+.mcat{break-inside:avoid;margin:0 0 16px;padding:24px;border-radius:var(--r);background:var(--card);box-shadow:0 20px 40px -34px rgba(58,30,27,.6)}
+.mcat-h{display:flex;align-items:center;gap:16px}
+.mcat-h img{width:76px;height:76px;border-radius:50%;object-fit:cover;flex:none;border:4px solid var(--sun)}
+.mcat-h img.lg{border:0;background:none}
+.mcat h3{font-size:22px;font-weight:900;text-transform:uppercase;line-height:1.1}
+.mcat .note{margin:4px 0 0;font-size:14px;color:var(--ink-2);line-height:1.45}
+.mcat ul{list-style:none;margin:18px 0 0;padding:0}
+.mcat li{display:flex;align-items:baseline;gap:10px;padding:10px 0;border-top:1px dashed var(--line)}
+.mcat li:first-child{border-top:0;padding-top:0}
+.mcat li .bean{width:10px;height:14px;color:var(--forest);flex:none;transform:translateY(1px)}
+.mcat li b{font-weight:700;font-size:16px}
+.mcat li small{display:block;font-size:13px;color:var(--ink-2);margin-top:1px}
+.menu-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;margin-top:8px;padding:22px 24px;border-radius:var(--r);background:var(--brown);color:var(--sun)}
+.menu-foot p{margin:0;font-weight:600}
+.menu-foot .btn{background:var(--sun);color:var(--brown)}
+@media (max-width:640px){.mcat{padding:18px}.mcat-h img{width:64px;height:64px}}
 
 /* cakes */
 .cakes{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;align-items:center}
@@ -328,10 +316,6 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="bean" viewBox="0 0 20 28"><ellipse cx="10" cy="14" rx="9" ry="13" fill="currentColor"/><path d="M11.5 2.5C6 8 15 14 9 25.5" fill="none" stroke="#FFF9EC" stroke-width="2" stroke-linecap="round" opacity=".85"/></symbol>
   <symbol id="pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="9.5" r="2.5" fill="currentColor"/></symbol>
-  <symbol id="i-cup" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h12v4.5A5.5 5.5 0 0 1 10.5 19h-1A5.5 5.5 0 0 1 4 13.5z"/><path d="M16 10.5h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5c-.8 1 .8 2 0 3M12 3.5c-.8 1 .8 2 0 3"/><path d="M3 21h15"/></g></symbol>
-  <symbol id="i-cake" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20.5h16"/><path d="M5 20.5V13a1.5 1.5 0 0 1 1.5-1.5h11A1.5 1.5 0 0 1 19 13v7.5"/><path d="M5 15.5c1.2 1 2.3 1 3.5 0s2.3-1 3.5 0 2.3 1 3.5 0 2.3-1 3.5 0"/><path d="M12 11.5V8.5"/><path d="M12 3.5c1.2 1.4 1.2 2.6 0 3.3-1.2-.7-1.2-1.9 0-3.3z"/></g></symbol>
-  <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 21.5s-7-6.3-7-11.8a7 7 0 0 1 14 0c0 5.5-7 11.8-7 11.8z"/><circle cx="12" cy="9.7" r="2.6"/></g></symbol>
-  <symbol id="i-star" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="m12 3 2.7 5.6 6.1.8-4.5 4.2 1.2 6.1L12 16.7l-5.5 3 1.2-6.1-4.5-4.2 6.1-.8z"/></symbol>
   <symbol id="star" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2.5 2.9 6.1 6.6.8-4.9 4.5 1.3 6.6L12 17.2l-5.9 3.3 1.3-6.6-4.9-4.5 6.6-.8z"/></symbol>
   <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.5 4 3.5 1.5.6 2.1.7 2.8.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></symbol>
 </svg>
@@ -340,21 +324,20 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
   <div class="wrap hdr">
     <a class="brand" href="#top" aria-label="Discovery Coffee, наверх"><img src="img/logo.svg" alt="" width="46" height="46"><span>Discovery Coffee</span></a>
     <nav class="top" aria-label="Разделы">
-      <a href="#menu" data-nav="menu"><svg aria-hidden="true"><use href="#i-cup"/></svg>Меню</a>
-      <a href="#cakes" data-nav="cakes"><svg aria-hidden="true"><use href="#i-cake"/></svg>Торты</a>
-      <a href="#branches" data-nav="branches"><svg aria-hidden="true"><use href="#i-pin"/></svg>Адреса</a>
-      <a href="#reviews" data-nav="reviews"><svg aria-hidden="true"><use href="#i-star"/></svg>Отзывы</a>
+      <a href="#menu" data-nav="menu">Меню</a>
+      <a href="#cakes" data-nav="cakes">Торты</a>
+      <a href="#branches" data-nav="branches">Адреса</a>
+      <a href="#reviews" data-nav="reviews">Отзывы</a>
     </nav>
     <a class="pill" href="https://wa.me/77715597777"><svg width="16" height="16" aria-hidden="true"><use href="#wa"/></svg>WhatsApp</a>
   </div>
+  <nav class="qnav" aria-label="Разделы">
+    <a href="#menu" data-nav="menu">Меню</a>
+    <a href="#cakes" data-nav="cakes">Торты</a>
+    <a href="#branches" data-nav="branches">Адреса</a>
+    <a href="#reviews" data-nav="reviews">Отзывы</a>
+  </nav>
 </header>
-
-<nav class="tabbar" aria-label="Быстрый переход">
-  <a href="#menu" data-nav="menu"><svg aria-hidden="true"><use href="#i-cup"/></svg>Меню</a>
-  <a href="#cakes" data-nav="cakes"><svg aria-hidden="true"><use href="#i-cake"/></svg>Торты</a>
-  <a href="#branches" data-nav="branches"><svg aria-hidden="true"><use href="#i-pin"/></svg>Адреса</a>
-  <a href="#reviews" data-nav="reviews"><svg aria-hidden="true"><use href="#i-star"/></svg>Отзывы</a>
-</nav>
 
 <main id="top">
 <section class="hero" aria-labelledby="h1">
@@ -396,17 +379,10 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
 
 <section class="blk" id="menu" aria-labelledby="menu-h">
   <div class="wrap">
-    <div class="head"><div><span class="eyebrow"><svg class="bean" aria-hidden="true"><use href="#bean"/></svg>Меню</span><h2 id="menu-h">Что у нас есть</h2><p class="lead">Цены уточняйте у бариста или в WhatsApp, скоро добавим их сюда.</p></div></div>
-    <div class="tabs" role="tablist" id="tabs" aria-label="Категории меню"></div>
-    <div class="mpanel" id="mpanel" role="tabpanel">
-      <div class="mph" id="cat-photo"></div>
-      <div class="mbody">
-        <h3 id="cat-name"></h3>
-        <p id="cat-note"></p>
-        <ul class="items" id="items"></ul>
-        <div class="mcta"><a class="btn forest" href="https://wa.me/77715597777"><svg width="16" height="16" aria-hidden="true"><use href="#wa"/></svg>Заказать с собой</a></div>
-      </div>
-    </div>
+    <div class="head"><div><span class="eyebrow"><svg class="bean" aria-hidden="true"><use href="#bean"/></svg>Меню</span><h2 id="menu-h">Что у нас есть</h2><p class="lead">Кофе, завтраки, обеды и десерты — всё, что готовим каждый день.</p></div></div>
+    <div class="board" id="board"></div>
+    <div class="menu-foot"><p>Цены — у бариста. Кофе и блюда можно взять с собой.</p><a class="btn" href="https://wa.me/77715597777"><svg width="16" height="16" aria-hidden="true"><use href="#wa"/></svg>Заказать с собой</a></div>
+  </div>
   </div>
 </section>
 
@@ -714,25 +690,11 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
     {n:'Суши',img:'',note:'Роллы и сеты в зале и с собой.',items:[['Роллы',''],['Сеты','']]},
     {n:'Десерты',img:'cheesecake',note:'Рулеты-безе, чизкейки и десерты дня в витрине. Торты на заказ.',items:[['Чизкейк',''],['Рулет-безе',''],['Десерт дня',''],['Торт на заказ','см. раздел «Торты»']]}
   ];
-  var cur=0,tabs=document.getElementById('tabs');
-  function draw(){
-    tabs.innerHTML=menu.map(function(c,i){return '<button role="tab" id="tab-'+i+'" type="button" aria-selected="'+(i===cur)+'" tabindex="'+(i===cur?0:-1)+'" data-i="'+i+'">'+c.n+'</button>';}).join('');
-    var c=menu[cur];
-    document.getElementById('items').innerHTML=c.items.map(function(it){
-      return '<li>'+bean+'<span><span class="n">'+it[0]+'</span>'+(it[1]?'<span class="d">'+it[1]+'</span>':'')+'</span></li>';}).join('');
-    document.getElementById('cat-name').textContent=c.n;
-    document.getElementById('cat-note').textContent=c.note;
-    var ph=document.getElementById('cat-photo');
-    ph.className='mph'+(c.img?'':' logo');
-    ph.innerHTML=c.img?'<img src="img/'+c.img+'.webp" alt="'+c.n+'">':'<img src="img/logo.svg" alt="">';
-  }
-  tabs.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;cur=+b.dataset.i;draw();
-    var nb=document.getElementById('tab-'+cur);if(nb&&nb.scrollIntoView)nb.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});});
-  tabs.addEventListener('keydown',function(e){
-    if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;
-    cur=(cur+(e.key==='ArrowRight'?1:menu.length-1))%menu.length;draw();document.getElementById('tab-'+cur).focus();
-  });
-  draw();
+  document.getElementById('board').innerHTML=menu.map(function(c){
+    return '<article class="mcat"><div class="mcat-h">'+(c.img?'<img src="img/'+c.img+'.webp" alt="" loading="lazy">':'<img class="lg" src="img/logo.svg" alt="" loading="lazy">')+
+      '<div><h3>'+c.n+'</h3><p class="note">'+c.note+'</p></div></div><ul>'+
+      c.items.map(function(it){return '<li>'+bean+'<span><b>'+it[0]+'</b>'+(it[1]?'<small>'+it[1]+'</small>':'')+'</span></li>';}).join('')+'</ul></article>';
+  }).join('');
 
   document.addEventListener('click',function(e){
     var b=e.target.closest('.copy');if(!b)return;
