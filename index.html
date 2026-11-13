@@ -545,14 +545,31 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
   function plural(n,a,b,c){var m=n%10,h=n%100;return m===1&&h!==11?a:m>=2&&m<=4&&(h<10||h>=20)?b:c;}
   var cities=[
     {n:'Павлодар',count:7},
-    {n:'Астана',url:'https://2gis.kz/astana/branches/70000001019143867'},
-    {n:'Тараз',url:'https://2gis.kz/taraz/firm/70000001055154589'}
+    // id — карточка кофейни в 2ГИС; без id ссылка ведёт на поиск по адресу
+    {n:'Астана',slug:'astana',url:'https://2gis.kz/astana/branches/70000001019143867',list:[
+      {a:'Динмухамед Конаев, 12',id:'70000001020138882'},
+      {a:'Кенесары, 63',id:'70000001044064889'},
+      {a:'Бейбитшилик, 31',id:'70000001026941463'},
+      {a:'Туркестан, 8',z:'ЖК «Олимп Палас»',id:'70000001032527350'},
+      {a:'Жанибек хандар, 14/2',z:'Керей',id:'70000001059237507'},
+      {a:'Каныша Сатпаева, 5'},
+      {a:'Санжара Асфендиярова, 4'},
+      {a:'Жумекена Нажимеденова, 16'},
+      {a:'Мангилик Ел, 51/2'},
+      {a:'Мангилик Ел, 54'},
+      {a:'Ирченко, 31'},
+      {a:'Азербайжана Мамбетова, 1в'}
+    ]},
+    {n:'Тараз',slug:'taraz',url:'https://2gis.kz/taraz/branches',list:[
+      {a:'Абая, 128',id:'70000001051433818'},
+      {a:'Казыбек би, 144а',id:'70000001055154589'}
+    ]}
   ],city=0,lastStats=null;
   var ctabs=document.getElementById('ctabs');
   var gisCities=null;
   function gisCity(n){return gisCities&&gisCities.filter(function(x){return x.name===n;})[0];}
   function drawCityTabs(){
-    ctabs.innerHTML=cities.map(function(c,i){var g=gisCity(c.n),n=c.count||(g&&g.branches.length);return '<button type="button" role="tab" aria-selected="'+(i===city)+'" data-c="'+i+'">'+c.n+(n?'<small>'+n+'</small>':'')+'</button>';}).join('');
+    ctabs.innerHTML=cities.map(function(c,i){var g=gisCity(c.n),n=c.count||(g&&g.branches.length)||(c.list&&c.list.length);return '<button type="button" role="tab" aria-selected="'+(i===city)+'" data-c="'+i+'">'+c.n+(n?'<small>'+n+'</small>':'')+'</button>';}).join('');
   }
   ctabs.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;city=+b.dataset.c;drawCityTabs();drawBranches(lastStats);});
   drawCityTabs();
@@ -568,6 +585,18 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
         return '<article class="br"><div class="top"><div><h3>'+esc(b.address||b.name)+'</h3><div class="zip">'+esc(c.n+(b.comment?', '+b.comment:''))+'</div></div></div>'+
           '<div class="meta">'+(b.hours?'<span class="num">'+esc(b.hours)+'</span>':'')+(b.phone?'<a class="num" href="tel:'+esc(String(b.phone).replace(/[^+\d]/g,''))+'" style="text-decoration:none;color:var(--ink)">'+esc(b.phone)+'</a>':'')+r+'</div>'+
           '<div class="acts"><a href="'+gl+'"><svg width="14" height="14" aria-hidden="true"><use href="#pin"/></svg>Маршрут в 2ГИС</a><a href="'+gl+'/tab/reviews">Отзывы</a></div></article>';
+      }).join('');
+      return;
+    }
+    if(c.list){
+      lead.textContent=c.list.length+' '+plural(c.list.length,'кофейня','кофейни','кофеен')+' · часы работы и телефоны — в карточках 2ГИС';
+      document.getElementById('brs').innerHTML=c.list.map(function(b){
+        var base='https://2gis.kz/'+c.slug+'/';
+        var link=b.id?base+'firm/'+b.id:base+'search/'+encodeURIComponent('Discovery Coffee, '+b.a);
+        return '<article class="br"><div class="top"><div><h3>'+b.a+'</h3><div class="zip">'+c.n+(b.z?' · '+b.z:'')+'</div></div></div>'+
+          '<div class="meta"><span>Работаем каждый день</span></div>'+
+          '<div class="acts"><a href="'+link+'"><svg width="14" height="14" aria-hidden="true"><use href="#pin"/></svg>Маршрут в 2ГИС</a>'+
+          (b.id?'<a href="'+link+'/tab/reviews">Отзывы</a>':'')+'</div></article>';
       }).join('');
       return;
     }
