@@ -565,20 +565,20 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
     {n:'Астана',slug:'astana',url:'https://2gis.kz/astana/branches/70000001019143867',list:[
       {o:480,c:1440,a:'Динмухамед Конаев, 12',id:'70000001020138882'},
       {o:480,c:1440,a:'Кенесары, 63',id:'70000001044064889'},
-      {o:480,c:1440,a:'Бейбитшилик, 31',id:'70000001026941463'},
-      {o:480,c:1440,a:'Туркестан, 8',z:'ЖК «Олимп Палас»',id:'70000001032527350'},
+      {o:480,c:1440,a:'Бейбитшилик, 31',p:'+7 747 673 37 68',id:'70000001026941463'},
+      {o:480,c:1440,a:'Туркестан, 8',p:'+7 707 207 98 55',z:'ЖК «Олимп Палас»',id:'70000001032527350'},
       {o:480,c:1440,a:'Жанибек хандар, 14/2',z:'Керей',id:'70000001059237507'},
       {o:480,c:1440,a:'Каныша Сатпаева, 5'},
       {o:480,c:1440,a:'Санжара Асфендиярова, 4'},
       {o:480,c:1440,a:'Жумекена Нажимеденова, 16'},
       {o:480,c:1440,a:'Мангилик Ел, 51/2'},
-      {o:480,c:1440,a:'Мангилик Ел, 54'},
+      {o:480,c:1440,a:'Мангилик Ел, 54',p:'+7 701 103 19 73'},
       {o:480,c:1440,a:'Ирченко, 31'},
       {o:480,c:1440,a:'Азербайжана Мамбетова, 1в'}
     ]},
     {n:'Тараз',slug:'taraz',url:'https://2gis.kz/taraz/branches',list:[
-      {o:480,c:1440,a:'Абая, 128',id:'70000001051433818'},
-      {o:480,c:1440,a:'Казыбек би, 144а',id:'70000001055154589'}
+      {o:480,c:1440,a:'Абая, 128',p:'+7 700 394 11 11',id:'70000001051433818'},
+      {o:480,c:1440,a:'Казыбек би, 144а',p:'+7 705 394 11 11',id:'70000001055154589'}
     ]}
   ],city=0,lastStats=null;
   function cityBranches(c){return c.list||(c.n==='Павлодар'?brs:[]);}
@@ -621,7 +621,8 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
         var on=isOpen(b);
         return '<article class="br"><div class="top"><div><h3>'+b.a+'</h3><div class="zip">'+c.n+(b.z?' · '+b.z:'')+'</div></div>'+
           '<span class="badge"><span class="dot'+(on?'':' off')+'"></span>'+(on?'Открыто':'Закрыто')+'</span></div>'+
-          '<div class="meta"><span class="num">ежедневно '+hours(b)+'</span><span>телефон в 2ГИС</span></div>'+
+          '<div class="meta"><span class="num">ежедневно '+hours(b)+'</span>'+
+          (b.p?'<a class="num" href="tel:'+b.p.replace(/\s/g,'')+'" style="text-decoration:none;color:var(--ink)">'+b.p+'</a>':'<a href="'+link+'" style="color:var(--ink)">Телефон в 2ГИС</a>')+'</div>'+
           '<div class="acts"><a href="'+link+'"><svg width="14" height="14" aria-hidden="true"><use href="#pin"/></svg>Маршрут в 2ГИС</a>'+
           (b.id?'<a href="'+link+'/tab/reviews">Отзывы</a>':'')+'</div></article>';
       }).join('');
