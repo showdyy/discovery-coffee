@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Discovery Coffee · Павлодар</title>
-<meta name="description" content="Discovery Coffee — семь кофеен в Павлодаре. Кофе, завтраки, бизнес-ланч, халяльная и европейская кухня, торты на заказ.">
+<title>Discovery Coffee — сеть кофеен в Казахстане</title>
+<meta name="description" content="Discovery Coffee — сеть кофеен в Астане, Павлодаре и Таразе. Кофе, завтраки, бизнес-ланч, кухня и торты на заказ.">
 <meta name="theme-color" content="#FDDA70">
 <link rel="icon" href="img/logo.svg" type="image/svg+xml">
 <link rel="icon" href="img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Discovery Coffee · Павлодар">
-<meta property="og:description" content="Семь кофеен в Павлодаре: кофе, завтраки, кухня и торты на заказ.">
+<meta property="og:title" content="Discovery Coffee — сеть кофеен в Казахстане">
+<meta property="og:description" content="Астана, Павлодар, Тараз: кофе, завтраки, кухня и торты на заказ.">
 <meta property="og:image" content="img/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,6 +109,8 @@ header.solid .pill{background:var(--sun);color:var(--brown)}
 @media (max-width:980px){.orbit{display:none}}
 .hero h1{font-size:clamp(28px,4.6vw,56px);text-transform:uppercase;max-width:20ch;animation:rise .9s var(--ease) .15s both}
 .hero h1 em{font-style:normal;color:var(--forest)}
+.cities{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:16px 0 0;animation:rise .9s var(--ease) .2s both}
+.cities span{font:800 14px/1 var(--f-display);text-transform:uppercase;letter-spacing:.06em;padding:9px 14px;border-radius:999px;background:var(--brown);color:var(--sun)}
 .hero p.sub{font-size:clamp(16px,1.6vw,19px);font-weight:500;max-width:46ch;margin:14px 0 0;color:#5a3d2f;animation:rise .9s var(--ease) .25s both}
 .hero-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;margin-top:26px;animation:rise .9s var(--ease) .35s both}
 .status{display:inline-flex;align-items:center;gap:10px;padding:10px 16px 10px 14px;border-radius:999px;background:rgba(255,249,236,.65);font-size:14px;font-weight:600}
@@ -163,35 +165,43 @@ section.blk{padding-block:96px}
 }
 
 /* facts */
-.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:56px}
-.facts > div{padding:22px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);display:flex;gap:12px}
+.facts{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:56px}
+.facts > div{flex:0 1 calc((100% - 36px)/4);padding:22px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);display:flex;gap:12px}
 .facts .bean{width:16px;height:22px;margin-top:1px;color:var(--forest)}
 .facts b{display:block;font:800 15px/1.3 var(--f-display)}
 .facts span{display:block;font-size:14px;color:var(--ink-2);margin-top:4px;line-height:1.45}
-@media (max-width:900px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:520px){.facts{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:900px){.facts > div{flex-basis:calc((100% - 12px)/2)}}
+@media (max-width:520px){.facts > div{flex-basis:100%}}
 
 /* menu */
 #menu{background:var(--paper-2)}
-.menu{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:48px;align-items:start}
-@media (max-width:940px){.menu{grid-template-columns:minmax(0,1fr)}}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
-.tabs button{font:700 14px/1 var(--f-body);padding:12px 18px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--ink-2);cursor:pointer;transition:all .2s}
-.tabs button:hover{color:var(--ink);border-color:var(--ink-2)}
+.tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px 20px;padding:4px 16px;scroll-snap-type:x proximity}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;scroll-snap-align:start;font:800 14px/1 var(--f-display);text-transform:uppercase;letter-spacing:.03em;padding:14px 20px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;white-space:nowrap;transition:background .2s,border-color .2s,color .2s}
+.tabs button:hover{border-color:var(--brown)}
 .tabs button[aria-selected="true"]{background:var(--brown);border-color:var(--brown);color:var(--sun)}
-.items{list-style:none;margin:0;padding:0}
-.items li{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:16px 0;border-bottom:2px dotted #dcc89e}
-.items .n{font-weight:700;font-size:18px}
-.items .d{display:block;font-size:14px;color:var(--ink-2);margin-top:2px}
-.items .p{font-size:13px;color:var(--ink-2);white-space:nowrap}
-.menu-card{position:sticky;top:96px;border-radius:var(--r);overflow:hidden;background:var(--card);box-shadow:0 30px 60px -36px rgba(58,30,27,.5)}
-.menu-card .ph{aspect-ratio:4/5;background:var(--paper-2);position:relative}
-.menu-card #cat-photo img{width:100%;height:100%;object-fit:cover;animation:fade .5s var(--ease) both}
-.menu-card .stamp{position:absolute;right:14px;top:14px;width:76px;height:76px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.3))}
-.menu-card .t{padding:20px 22px 22px;display:flex;flex-direction:column;gap:14px}
-.menu-card p{margin:0;font-size:15px;color:var(--ink-2)}
+.mpanel{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 60px -40px rgba(58,30,27,.55)}
+.mph{position:relative;min-height:440px;background:var(--forest)}
+.mph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:fade .5s var(--ease) both}
+.mph.logo{display:grid;place-items:center}
+.mph.logo img{position:static;width:58%;height:auto;object-fit:contain}
+.mbody{padding:36px 40px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.mbody h3{font-size:clamp(28px,3.4vw,42px);text-transform:uppercase}
+.mbody p{margin:0;color:var(--ink-2);font-size:16px;max-width:52ch}
+.items{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.items li{display:flex;gap:10px;align-items:flex-start;padding:14px 16px;border-radius:14px;background:var(--paper);min-width:0}
+.items .bean{width:12px;height:17px;margin-top:3px;color:var(--forest)}
+.items .n{display:block;font-weight:700;font-size:16px;line-height:1.3}
+.items .d{display:block;font-size:13px;color:var(--ink-2);margin-top:2px;line-height:1.35}
+.mcta{margin-top:auto;padding-top:10px}
 @keyframes fade{from{opacity:.2}to{opacity:1}}
-@media (max-width:940px){.menu-card{position:static}.menu-card .ph{aspect-ratio:16/10}}
+@media (max-width:860px){
+  .mpanel{grid-template-columns:minmax(0,1fr)}
+  .mph{min-height:0;aspect-ratio:16/10}
+  .mph.logo img{width:34%}
+  .mbody{padding:22px 18px 24px}
+}
+@media (max-width:360px){.items{grid-template-columns:minmax(0,1fr)}}
 
 /* cakes */
 .cakes{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;align-items:center}
@@ -228,6 +238,15 @@ section.blk{padding-block:96px}
 .br.lead-card{background:var(--sun);color:var(--brown);justify-content:space-between}
 .br.lead-card p{margin:0;font-size:15px;font-weight:500}
 
+.ctabs{display:flex;flex-wrap:wrap;gap:8px;margin:-12px 0 18px}
+.ctabs button{font:800 15px/1 var(--f-display);text-transform:uppercase;letter-spacing:.04em;padding:14px 20px;border-radius:999px;border:2px solid rgba(255,244,214,.35);background:transparent;color:var(--forest-ink);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.ctabs button:hover{border-color:var(--sun)}
+.ctabs button[aria-selected="true"]{background:var(--sun);border-color:var(--sun);color:var(--brown)}
+.ctabs small{font:700 12px/1 var(--f-body);opacity:.7;margin-left:6px}
+#branches .city-lead{margin:0 0 22px}
+.br.city-card{grid-column:1 / -1;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;padding:32px}
+.br.city-card h3{font-size:clamp(26px,3.4vw,40px);font-weight:900;text-transform:uppercase}
+.br.city-card p{margin:8px 0 0;color:var(--ink-2);max-width:52ch}
 /* reviews */
 .rv-top{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:16px;margin-bottom:16px}
 @media (max-width:860px){.rv-top{grid-template-columns:minmax(0,1fr)}}
@@ -346,8 +365,9 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
       <figure class="orbit o2"><img src="img/latte.webp" alt="Капучино с сырниками"></figure>
       <figure class="orbit o3"><img src="img/cheesecake.webp" alt="Чизкейк"></figure>
     </div>
-    <h1 id="h1">Семь кофеен <em>Павлодара</em></h1>
-    <p class="sub">Кофе, завтраки, бизнес-ланч и ужин каждый день. Халяльная и европейская кухня, торты на заказ.</p>
+    <h1 id="h1">Сеть кофеен <em>в Казахстане</em></h1>
+    <p class="cities" aria-label="Города"><span>Астана</span><span>Павлодар</span><span>Тараз</span></p>
+    <p class="sub">Кофе, завтраки, бизнес-ланч и ужин каждый день. Торты на заказ.</p>
     <div class="hero-row">
       <div class="status" id="status"><span class="dot"></span>Проверяем, кто открыт…</div>
       <a class="btn forest" href="#branches"><svg width="16" height="16" aria-hidden="true"><use href="#pin"/></svg>Найти ближайшую</a>
@@ -367,7 +387,7 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
       <figure class="ph2"><img src="img/breakfast.webp" alt="Завтрак: рис с котлетами и капучино" loading="lazy"><figcaption>Завтраки</figcaption></figure>
       <figure class="ph3"><img src="img/cappuccino.webp" alt="Капучино" loading="lazy"><figcaption>Кофе</figcaption></figure>
       <figure class="ph4"><img src="img/salmon.webp" alt="Лосось на гриле" loading="lazy"><figcaption>Кухня</figcaption></figure>
-      <figure class="logo-tile"><img src="img/logo.svg" alt="" loading="lazy"><p>Семь адресов, один вкус — от Машхур Жусупа до Batyr Mall</p></figure>
+      <figure class="logo-tile"><img src="img/logo.svg" alt="" loading="lazy"><p>Астана, Павлодар, Тараз — один вкус в каждом городе</p></figure>
       <figure class="ph5"><img src="img/logo-wall.webp" alt="Светящаяся карта мира «Кофейный пояс» в зале" loading="lazy" style="object-position:50% 40%"><figcaption>Кофейный пояс</figcaption></figure>
     </div>
     <div class="facts" id="facts"></div>
@@ -377,15 +397,15 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
 <section class="blk" id="menu" aria-labelledby="menu-h">
   <div class="wrap">
     <div class="head"><div><span class="eyebrow"><svg class="bean" aria-hidden="true"><use href="#bean"/></svg>Меню</span><h2 id="menu-h">Что у нас есть</h2><p class="lead">Цены уточняйте у бариста или в WhatsApp, скоро добавим их сюда.</p></div></div>
-    <div class="menu">
-      <div>
-        <div class="tabs" role="tablist" id="tabs" aria-label="Категории меню"></div>
-        <ul class="items" id="items" role="tabpanel"></ul>
+    <div class="tabs" role="tablist" id="tabs" aria-label="Категории меню"></div>
+    <div class="mpanel" id="mpanel" role="tabpanel">
+      <div class="mph" id="cat-photo"></div>
+      <div class="mbody">
+        <h3 id="cat-name"></h3>
+        <p id="cat-note"></p>
+        <ul class="items" id="items"></ul>
+        <div class="mcta"><a class="btn forest" href="https://wa.me/77715597777"><svg width="16" height="16" aria-hidden="true"><use href="#wa"/></svg>Заказать с собой</a></div>
       </div>
-      <aside class="menu-card">
-        <div class="ph"><div id="cat-photo" style="height:100%"></div><img class="stamp" src="img/logo.svg" alt=""></div>
-        <div class="t"><p id="cat-note"></p><a class="btn forest" href="https://wa.me/77715597777" style="align-self:flex-start"><svg width="16" height="16" aria-hidden="true"><use href="#wa"/></svg>Заказать с собой</a></div>
-      </aside>
     </div>
   </div>
 </section>
@@ -415,7 +435,9 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
 
 <section class="blk" id="branches" aria-labelledby="br-h">
   <div class="wrap">
-    <div class="head"><div><span class="eyebrow"><svg class="bean" aria-hidden="true"><use href="#bean"/></svg>Адреса</span><h2 id="br-h">Семь адресов в Павлодаре</h2><p class="lead">Все кофейни работают без выходных. <span id="open-count"></span></p></div></div>
+    <div class="head"><div><span class="eyebrow"><svg class="bean" aria-hidden="true"><use href="#bean"/></svg>Адреса</span><h2 id="br-h">Наши кофейни</h2><p class="lead">Астана, Павлодар и Тараз. Все кофейни работают без выходных.</p></div></div>
+    <div class="ctabs" role="tablist" id="ctabs" aria-label="Город"></div>
+    <p class="lead city-lead" id="city-lead"></p>
     <div class="branches" id="brs"></div>
   </div>
 </section>
@@ -431,7 +453,7 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
         <div class="of">Рейтинг в 2ГИС</div>
         <div class="big num" id="score-n">—</div>
         <div class="stars" id="score-stars" aria-hidden="true"></div>
-        <div class="meta" id="score-meta">Оценки гостей всех семи кофеен</div>
+        <div class="meta" id="score-meta">Оценки гостей наших кофеен</div>
         <img src="img/logo.svg" alt="">
       </div>
       <div class="reviews" id="rvs-lead"></div>
@@ -481,7 +503,7 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
         <a href="tel:+77715597777" class="num">+7 771 559 77 77</a>
         <a href="https://2gis.kz/pavlodar/branches/70000001030973689">2ГИС</a>
       </nav>
-      <small>Discovery Coffee · Павлодар</small>
+      <small>Discovery Coffee · Астана · Павлодар · Тараз</small>
     </div>
   </div>
 </footer>
@@ -517,13 +539,13 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
   }
 
   // ---------- ticker ----------
-  var words=['Кофе','Завтраки','Бизнес-ланч','Халяль','Торты на заказ','VIP-зал','Веранда','Навынос'];
+  var words=['Астана','Павлодар','Тараз','Кофе','Завтраки','Бизнес-ланч','Торты на заказ','Навынос'];
   var bean='<svg class="bean" aria-hidden="true"><use href="#bean"/></svg>';
   var run=words.map(function(w){return '<span>'+w+bean+'</span>';}).join('');
   document.getElementById('ticker').innerHTML=run+run+run+run;
 
   // ---------- facts ----------
-  var facts=[['Халяль','Халяльная и европейская кухня'],['С 07:30 до полуночи','Большинство кофеен, без выходных'],['Завтраки и бизнес-ланч','Утром завтраки, днём комплексный обед'],['Средний чек','≈ 5 000 ₸'],['VIP-зал','Для встреч и праздников'],['Веранда','Столики на улице в тёплый сезон'],['Wi-Fi','Бесплатно, удобно работать с ноутбуком'],['С детьми и навынос','Детское меню, кофе и блюда с собой']];
+  var facts=[['Халяль','Халяльная и европейская кухня'],['Без выходных','Кофейни открыты каждый день'],['Завтраки и бизнес-ланч','Утром завтраки, днём комплексный обед'],['VIP-зал','Для встреч и праздников'],['Веранда','Столики на улице в тёплый сезон'],['Wi-Fi','Бесплатно, удобно работать с ноутбуком'],['С детьми и навынос','Детское меню, кофе и блюда с собой']];
   document.getElementById('facts').innerHTML=facts.map(function(f){return '<div>'+bean+'<div><b>'+f[0]+'</b><span>'+f[1]+'</span></div></div>';}).join('');
 
   // ---------- branches & open status (Pavlodar time, UTC+5) ----------
@@ -542,12 +564,30 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
   ];
   var openN=brs.filter(isOpen).length,nextOpen=Math.min.apply(null,brs.map(function(b){return b.o;}));
   document.getElementById('status').innerHTML=openN
-    ?'<span class="dot live"></span>Сейчас открыто '+openN+' из 7'
-    :'<span class="dot off"></span>Все закрыты · откроемся в '+hm(nextOpen);
-  document.getElementById('open-count').textContent=openN?'Сейчас открыто '+openN+' из 7.':'Сейчас все закрыты, первая откроется в '+hm(nextOpen)+'.';
+    ?'<span class="dot live"></span>В Павлодаре открыто '+openN+' из 7'
+    :'<span class="dot off"></span>В Павлодаре откроемся в '+hm(nextOpen);
   function plural(n,a,b,c){var m=n%10,h=n%100;return m===1&&h!==11?a:m>=2&&m<=4&&(h<10||h>=20)?b:c;}
+  var cities=[
+    {n:'Павлодар',count:7},
+    {n:'Астана',url:'https://2gis.kz/astana/branches/70000001019143867'},
+    {n:'Тараз',url:'https://2gis.kz/taraz/firm/70000001055154589'}
+  ],city=0,lastStats=null;
+  var ctabs=document.getElementById('ctabs');
+  function drawCityTabs(){
+    ctabs.innerHTML=cities.map(function(c,i){return '<button type="button" role="tab" aria-selected="'+(i===city)+'" data-c="'+i+'">'+c.n+(c.count?'<small>'+c.count+'</small>':'')+'</button>';}).join('');
+  }
+  ctabs.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;city=+b.dataset.c;drawCityTabs();drawBranches(lastStats);});
+  drawCityTabs();
   function drawBranches(stats){
-    stats=stats||{};
+    lastStats=stats;stats=stats||{};
+    var c=cities[city],lead=document.getElementById('city-lead');
+    if(c.url){
+      lead.textContent='';
+      document.getElementById('brs').innerHTML='<article class="br city-card"><div><h3>'+c.n+'</h3><p>Адреса, часы работы и маршрут до каждой кофейни в '+(c.n==='Астана'?'Астане':'Таразе')+' — в 2ГИС.</p></div>'+
+        '<a class="btn forest" href="'+c.url+'"><svg width="16" height="16" aria-hidden="true"><use href="#pin"/></svg>Адреса в 2ГИС</a></article>';
+      return;
+    }
+    lead.textContent=openN?'Сейчас открыто '+openN+' из 7.':'Сейчас все закрыты, первая откроется в '+hm(nextOpen)+'.';
     document.getElementById('brs').innerHTML=brs.map(function(b){
       var on=isOpen(b),s=stats[b.id];
       var rate=s&&s.rating?'<span class="rate"><svg width="15" height="15" aria-hidden="true"><use href="#star"/></svg>'+s.rating.toFixed(1).replace('.',',')+'<span style="font-weight:500;color:var(--ink-2)"> · '+s.count+' '+plural(s.count,'оценка','оценки','оценок')+'</span></span>':'';
@@ -606,10 +646,10 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
     if(data.rating){
       document.getElementById('score-n').textContent=data.rating.toFixed(1).replace('.',',');
       document.getElementById('score-stars').innerHTML=stars(data.rating);
-      document.getElementById('score-meta').textContent=data.count+' '+plural(data.count,'оценка','оценки','оценок')+' гостей всех семи кофеен';
+      document.getElementById('score-meta').textContent=data.count+' '+plural(data.count,'оценка','оценки','оценок')+' гостей в 2ГИС';
     } else {
       document.getElementById('score-n').textContent='2ГИС';
-      document.getElementById('score-meta').textContent='Оценки и фото гостей всех семи кофеен — в нашей карточке';
+      document.getElementById('score-meta').textContent='Оценки и фото гостей наших кофеен — в 2ГИС';
     }
     if(data.updated)document.getElementById('rv-updated').textContent='Обновлено из 2ГИС '+date(data.updated);
     if(data.branches){var m={};data.branches.forEach(function(b){m[b.id]=b;});drawBranches(m);}
@@ -669,9 +709,9 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
     {n:'Кофе',img:'cappuccino',note:'Классика на эспрессо, холодный кофе и бамбл. Любой напиток можно взять с собой.',items:[['Эспрессо',''],['Капучино',''],['Латте',''],['Бамбл','эспрессо с апельсиновым соком'],['Айс-кофе','']]},
     {n:'Напитки',img:'drink',note:'Для тех, кто не пьёт кофе, и для детей.',items:[['Чай','чёрный, зелёный, ягодный'],['Какао',''],['Милкшейк',''],['Лимонад','']]},
     {n:'Завтраки',img:'breakfast',note:'Подаём с утра.',items:[['Блины',''],['Сырники',''],['Сэндвич',''],['Кесадилья','']]},
-    {n:'Бизнес-ланч',img:'salmon',note:'Комплексный обед. Время и состав дня уточняйте в кофейне.',items:[['Бизнес-ланч','суп, горячее, напиток']]},
+    {n:'Бизнес-ланч',img:'salmon',note:'Комплексный обед днём. Время и состав дня уточняйте в кофейне.',items:[['Суп',''],['Горячее',''],['Напиток','']]},
     {n:'Кухня',img:'bowl',note:'Халяльная и европейская кухня на обед и ужин.',items:[['Боулы',''],['Рамен',''],['Паста',''],['Рис вок',''],['Пицца',''],['Бургер',''],['Гриль','лосось, говядина'],['Картофель фри',''],['Супы',''],['Салаты','']]},
-    {n:'Суши',img:'interior-brick',note:'Роллы и сеты в зале и с собой.',items:[['Роллы',''],['Сеты','']]},
+    {n:'Суши',img:'',note:'Роллы и сеты в зале и с собой.',items:[['Роллы',''],['Сеты','']]},
     {n:'Десерты',img:'cheesecake',note:'Рулеты-безе, чизкейки и десерты дня в витрине. Торты на заказ.',items:[['Чизкейк',''],['Рулет-безе',''],['Десерт дня',''],['Торт на заказ','см. раздел «Торты»']]}
   ];
   var cur=0,tabs=document.getElementById('tabs');
@@ -679,11 +719,15 @@ footer{background:var(--brown);color:var(--sun);padding-block:64px 36px}
     tabs.innerHTML=menu.map(function(c,i){return '<button role="tab" id="tab-'+i+'" type="button" aria-selected="'+(i===cur)+'" tabindex="'+(i===cur?0:-1)+'" data-i="'+i+'">'+c.n+'</button>';}).join('');
     var c=menu[cur];
     document.getElementById('items').innerHTML=c.items.map(function(it){
-      return '<li><span><span class="n">'+it[0]+'</span>'+(it[1]?'<span class="d">'+it[1]+'</span>':'')+'</span><span class="p">цена у бариста</span></li>';}).join('');
+      return '<li>'+bean+'<span><span class="n">'+it[0]+'</span>'+(it[1]?'<span class="d">'+it[1]+'</span>':'')+'</span></li>';}).join('');
+    document.getElementById('cat-name').textContent=c.n;
     document.getElementById('cat-note').textContent=c.note;
-    document.getElementById('cat-photo').innerHTML='<img src="img/'+c.img+'.webp" alt="'+c.n+'">';
+    var ph=document.getElementById('cat-photo');
+    ph.className='mph'+(c.img?'':' logo');
+    ph.innerHTML=c.img?'<img src="img/'+c.img+'.webp" alt="'+c.n+'">':'<img src="img/logo.svg" alt="">';
   }
-  tabs.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;cur=+b.dataset.i;draw();});
+  tabs.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;cur=+b.dataset.i;draw();
+    var nb=document.getElementById('tab-'+cur);if(nb&&nb.scrollIntoView)nb.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});});
   tabs.addEventListener('keydown',function(e){
     if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;
     cur=(cur+(e.key==='ArrowRight'?1:menu.length-1))%menu.length;draw();document.getElementById('tab-'+cur).focus();
